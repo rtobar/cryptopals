@@ -1,0 +1,22 @@
+#!/bin/bash
+
+program="$1"
+inputs="$2"
+expected_output="$3"
+
+echo "Executing: $program $inputs"
+output="`$program $inputs 2>&1`"
+if [ $? -ne 0 ]; then
+    echo "Execution failed: $output" 1>&2
+    exit 1
+fi
+
+if [ "$output" != "$expected_output" ]; then
+    echo "Output different from expected:" 1>&2
+    echo "$output" 1>&2
+    echo "=======" 1>&2
+    echo "$expected_output" 1>&2
+    exit 1
+fi
+
+echo "$output"

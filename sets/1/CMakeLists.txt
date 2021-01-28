@@ -1,7 +1,12 @@
-add_executable(1 1.cpp)
-add_executable(2 2.cpp)
-add_executable(3 3.cpp)
-
-target_link_libraries(1 PRIVATE cryptopals_common)
-target_link_libraries(2 PRIVATE cryptopals_common)
-target_link_libraries(3 PRIVATE cryptopals_common)
+add_challenge(1
+  INPUT  49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d
+  OUTPUT SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t
+)
+add_challenge(2
+  INPUT 1c0111001f010100061a024b53535009181c 686974207468652062756c6c277320657965
+  OUTPUT 746865206b696420646f6e277420706c6179
+)
+add_challenge(3
+  INPUT 1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736
+  OUTPUT "key: X, plain text: Cooking MC's like a pound of bacon"
+)
