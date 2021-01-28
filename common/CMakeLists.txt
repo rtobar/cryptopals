@@ -1,6 +1,8 @@
 set(cryptopals_common_sources
   cryptopals/conversions.cpp
   cryptopals/conversions.h
+  cryptopals/frequency_analysis.cpp
+  cryptopals/frequency_analysis.h
   cryptopals/operations.cpp
   cryptopals/operations.h
 )

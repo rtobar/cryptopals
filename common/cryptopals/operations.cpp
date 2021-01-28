@@ -35,21 +35,4 @@ std::string bit_xor(const std::string &bytes, const char c)
     return result;
 }
 
-static const std::string letter_by_frequency = "etaoinshrdlcumwfgypbvkjxqz";
-
-static int character_frequency_score(char c)
-{
-    auto pos = letter_by_frequency.find(c);
-    if (pos == std::string::npos)
-        pos = letter_by_frequency.size();
-    return letter_by_frequency.size() - pos;
-}
-
-int score_english_character_freq(const std::string &text)
-{
-    return std::accumulate(begin(text), end(text), 0,
-                           [](int score, char c)
-                           { return score + character_frequency_score(c); });
-}
-
 } // namespace cryptopals
