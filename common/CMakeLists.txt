@@ -3,6 +3,8 @@ set(cryptopals_common_sources
   cryptopals/conversions.h
   cryptopals/frequency_analysis.cpp
   cryptopals/frequency_analysis.h
+  cryptopals/hamming.cpp
+  cryptopals/hamming.h
   cryptopals/xor.cpp
   cryptopals/xor.h
 )
