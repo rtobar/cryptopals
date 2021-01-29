@@ -30,9 +30,8 @@ std::string bit_xor(const std::string &bytes_1, const std::string &bytes_2)
 std::string bit_xor(const std::string &bytes, const char *key, int key_size)
 {
     std::string result(bytes.size(), 0);
-    auto key_xor = [i = 0, key, key_size](char c) mutable {
-        return c ^ key[i++ % key_size];
-	 };
+    auto key_xor = [i = 0, key, key_size](char c) mutable
+    { return c ^ key[i++ % key_size]; };
     std::transform(begin(bytes), end(bytes), begin(result), key_xor);
     return result;
 }

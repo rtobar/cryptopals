@@ -27,7 +27,8 @@ int score_english_character_freq(const std::string &text)
                            { return score + character_frequency_score(c); });
 }
 
-bool operator<(const FrequencyAnalysisResult &lhs, const FrequencyAnalysisResult &rhs)
+bool operator<(const FrequencyAnalysisResult &lhs,
+               const FrequencyAnalysisResult &rhs)
 {
     return lhs.score < rhs.score;
 }
@@ -41,9 +42,9 @@ FrequencyAnalysisResult best_score_with_single_char_xor(const std::string &hex)
         auto score = score_english_character_freq(bit_xor(text, char(c)));
         scores.push_back(score);
     }
-	 auto best_score = std::max_element(begin(scores), end(scores));
+    auto best_score = std::max_element(begin(scores), end(scores));
     auto key = std::distance(begin(scores), best_score);
-	 assert(key < 256);
+    assert(key < 256);
     return {*best_score, static_cast<char>(key), bit_xor(text, key)};
 }
 
