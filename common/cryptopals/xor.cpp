@@ -4,7 +4,7 @@
 #include <numeric>
 
 #include "cryptopals/conversions.h"
-#include "cryptopals/operations.h"
+#include "cryptopals/xor.h"
 
 namespace cryptopals
 {

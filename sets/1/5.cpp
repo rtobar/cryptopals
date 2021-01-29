@@ -3,7 +3,7 @@
 #include <sstream>
 
 #include "cryptopals/conversions.h"
-#include "cryptopals/operations.h"
+#include "cryptopals/xor.h"
 
 int main(int argc, char *argv[])
 {

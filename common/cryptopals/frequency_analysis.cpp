@@ -4,8 +4,8 @@
 #include <vector>
 
 #include "cryptopals/conversions.h"
-#include "cryptopals/operations.h"
 #include "cryptopals/frequency_analysis.h"
+#include "cryptopals/xor.h"
 
 namespace cryptopals
 {

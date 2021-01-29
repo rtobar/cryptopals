@@ -1,7 +1,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "cryptopals/operations.h"
+#include "cryptopals/xor.h"
 
 int main(int argc, char *argv[])
 {
