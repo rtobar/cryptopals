@@ -1,7 +1,6 @@
 #include <bitset>
 #include <numeric>
 
-#include "cryptopals/conversions.h"
 #include "cryptopals/hamming.h"
 #include "cryptopals/xor.h"
 

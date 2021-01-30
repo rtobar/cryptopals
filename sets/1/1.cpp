@@ -1,7 +1,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "cryptopals/conversions.h"
+#include "cryptopals/base64.h"
 
 int main(int argc, char *argv[])
 {

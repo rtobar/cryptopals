@@ -1,57 +1,13 @@
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <string>
 
-#include "cryptopals/conversions.h"
+#include "cryptopals/base64.h"
+#include "cryptopals/hex.h"
 
 namespace cryptopals
 {
-
-static bool is_hex_digit(char c)
-{
-    return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') ||
-           (c >= 'A' && c <= 'F');
-}
-
-static char hex_to_decimal(char c)
-{
-    assert(is_hex_digit(c));
-    if (c <= '9')
-        return c - '0';
-    if (c <= 'f')
-        return (c - 'a') + 10;
-    return (c - 'A') + 10;
-}
-
-static char decimal_to_hex(char c)
-{
-    if (c < 10)
-        return c + '0';
-    return c - 10 + 'a';
-}
-
-std::string hex_to_bytes(const std::string &s)
-{
-    assert(s.size() % 2 == 0);
-    std::string bytes;
-    for (std::size_t pos = 0; pos < s.size(); pos += 2)
-    {
-        bytes.push_back(hex_to_decimal(s[pos]) * 16 +
-                        hex_to_decimal(s[pos + 1]));
-    }
-    return bytes;
-}
-
-std::string bytes_to_hex(const std::string &bytes)
-{
-    std::string hex;
-    for (std::size_t pos = 0; pos < bytes.size(); pos++)
-    {
-        hex.push_back(decimal_to_hex(bytes[pos] / 16));
-        hex.push_back(decimal_to_hex(bytes[pos] % 16));
-    }
-    return hex;
-}
 
 static const std::array<char, 64> base64_table{
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -103,6 +59,45 @@ std::string bytes_to_base64(const std::string &bytes)
 std::string hex_to_base64(const std::string &s)
 {
     return bytes_to_base64(hex_to_bytes(s));
+}
+
+std::string base64_to_bytes(const std::string &base64_string)
+{
+    auto b64_to_byte = [](const char c)
+    {
+        auto pos = std::find(begin(base64_table), end(base64_table), c);
+        assert(pos != end(base64_table));
+        return static_cast<char>(std::distance(begin(base64_table), pos));
+    };
+    // main loop
+    std::string bytes;
+    for (std::size_t pos = 0; pos < base64_string.size() / 4; pos++)
+    {
+        auto *start = base64_string.data() + pos * 4;
+        auto b1 = b64_to_byte(start[0]);
+        auto b2 = b64_to_byte(start[1]);
+        bytes.push_back((b1 << 2) | (b2 >> 4));
+
+        // padding
+        if (start[2] == '=')
+        {
+            assert(pos + 1 == base64_string.size() / 4);
+            assert(start[3] == '=');
+            break;
+        }
+        auto b3 = b64_to_byte(start[2]);
+        bytes.push_back((b2 << 4) | (b3 >> 2));
+
+        // padding
+        if (start[3] == '=')
+        {
+            assert(pos + 1 == base64_string.size() / 4);
+            break;
+        }
+        auto b4 = b64_to_byte(start[3]);
+        bytes.push_back((b3 << 6) | b4);
+    }
+    return bytes;
 }
 
 } // namespace cryptopals

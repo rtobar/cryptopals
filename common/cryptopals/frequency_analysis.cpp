@@ -3,8 +3,8 @@
 #include <numeric>
 #include <vector>
 
-#include "cryptopals/conversions.h"
 #include "cryptopals/frequency_analysis.h"
+#include "cryptopals/hex.h"
 #include "cryptopals/xor.h"
 
 namespace cryptopals

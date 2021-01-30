@@ -3,7 +3,7 @@
 #include <functional>
 #include <numeric>
 
-#include "cryptopals/conversions.h"
+#include "cryptopals/hex.h"
 #include "cryptopals/xor.h"
 
 namespace cryptopals

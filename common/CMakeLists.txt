@@ -1,10 +1,12 @@
 set(cryptopals_common_sources
-  cryptopals/conversions.cpp
-  cryptopals/conversions.h
+  cryptopals/base64.cpp
+  cryptopals/base64.h
   cryptopals/frequency_analysis.cpp
   cryptopals/frequency_analysis.h
   cryptopals/hamming.cpp
   cryptopals/hamming.h
+  cryptopals/hex.cpp
+  cryptopals/hex.h
   cryptopals/xor.cpp
   cryptopals/xor.h
 )

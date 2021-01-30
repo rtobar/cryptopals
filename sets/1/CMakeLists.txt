@@ -22,3 +22,7 @@ add_challenge(6_pre0
   ARGS "this is a test" "wokka wokka!!!"
   OUTPUT 37
 )
+add_challenge(6
+  ARGS ${PROJECT_SOURCE_DIR}/challenge-data/6.txt
+  OUTPUT No-Idea
+)

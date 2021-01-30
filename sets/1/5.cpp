@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "cryptopals/conversions.h"
+#include "cryptopals/hex.h"
 #include "cryptopals/xor.h"
 
 int main(int argc, char *argv[])
