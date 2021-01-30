@@ -24,5 +24,5 @@ add_challenge(6_pre0
 )
 add_challenge(6
   ARGS ${PROJECT_SOURCE_DIR}/challenge-data/6.txt
-  OUTPUT No-Idea
+  OUTPUT_FILE ${PROJECT_SOURCE_DIR}/challenge-data/6-decrypted.txt
 )
