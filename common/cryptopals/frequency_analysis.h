@@ -18,6 +18,6 @@ struct FrequencyAnalysisResult
 bool operator<(const FrequencyAnalysisResult &lhs,
                const FrequencyAnalysisResult &rhs);
 
-FrequencyAnalysisResult best_score_with_single_char_xor(const std::string &hex);
+FrequencyAnalysisResult best_score_with_single_char_xor(const std::string &text);
 
 } // namespace cryptopals

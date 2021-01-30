@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "cryptopals/frequency_analysis.h"
+#include "cryptopals/hex.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +14,7 @@ int main(int argc, char *argv[])
     std::vector<cryptopals::FrequencyAnalysisResult> results;
     for (std::string line; std::getline(input, line);)
     {
-        results.push_back(cryptopals::best_score_with_single_char_xor(line));
+        results.push_back(cryptopals::best_score_with_single_char_xor(cryptopals::hex_to_bytes(line)));
     }
     assert(results.size() > 0);
     std::sort(begin(results), end(results));

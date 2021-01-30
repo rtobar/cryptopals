@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "cryptopals/frequency_analysis.h"
-#include "cryptopals/hex.h"
 #include "cryptopals/xor.h"
 
 namespace cryptopals
@@ -33,9 +32,8 @@ bool operator<(const FrequencyAnalysisResult &lhs,
     return lhs.score < rhs.score;
 }
 
-FrequencyAnalysisResult best_score_with_single_char_xor(const std::string &hex)
+FrequencyAnalysisResult best_score_with_single_char_xor(const std::string &text)
 {
-    auto text = hex_to_bytes(hex);
     std::vector<int> scores;
     for (int c = 0; c < 255; c++)
     {
