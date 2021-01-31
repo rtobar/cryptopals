@@ -6,6 +6,9 @@ include(CTest)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+# external dependencies
+find_package(OpenSSL REQUIRED)
+
 function(add_challenge challenge_number)
 		  cmake_parse_arguments(challenge "" "" "ARGS;OUTPUT;OUTPUT_FILE" ${ARGV})
   get_filename_component(set_number ${CMAKE_CURRENT_SOURCE_DIR} NAME)

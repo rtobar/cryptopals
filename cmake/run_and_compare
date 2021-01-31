@@ -30,9 +30,7 @@ fi
 
 if [ "$output" != "$expected_output" ]; then
     echo "Output different from expected:" 1>&2
-    echo "$output" 1>&2
-    echo "=======" 1>&2
-    echo "$expected_output" 1>&2
+	 diff -Naur <(echo "$output") <(echo "$expected_output")
     exit 1
 fi
 

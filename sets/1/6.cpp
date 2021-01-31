@@ -1,14 +1,13 @@
 #include <algorithm>
 #include <cassert>
-#include <fstream>
 #include <iostream>
 #include <numeric>
 #include <utility>
 #include <vector>
 
-#include "cryptopals/base64.h"
 #include "cryptopals/frequency_analysis.h"
 #include "cryptopals/hamming.h"
+#include "cryptopals/io.h"
 #include "cryptopals/xor.h"
 
 namespace cryptopals
@@ -83,13 +82,7 @@ std::string break_repeating_xor(const std::string &cipher_text)
 int main(int argc, char *argv[])
 {
     assert(argc > 1);
-    std::ifstream input(argv[1]);
-    std::string input_str;
-    for (std::string line; std::getline(input, line);)
-    {
-        input_str += line;
-    }
     std::cout << cryptopals::break_repeating_xor(
-                     cryptopals::base64_to_bytes(input_str))
+                     cryptopals::read_multiline_b64_file(argv[1]))
               << '\n';
 }

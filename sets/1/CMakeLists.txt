@@ -26,3 +26,7 @@ add_challenge(6
   ARGS ${PROJECT_SOURCE_DIR}/challenge-data/6.txt
   OUTPUT_FILE ${PROJECT_SOURCE_DIR}/challenge-data/6-decrypted.txt
 )
+add_challenge(7
+  ARGS ${PROJECT_SOURCE_DIR}/challenge-data/7.txt "YELLOW SUBMARINE"
+  OUTPUT_FILE ${PROJECT_SOURCE_DIR}/challenge-data/7-decrypted.txt
+)
