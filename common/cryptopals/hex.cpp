@@ -46,10 +46,10 @@ std::string hex_to_bytes(const std::string &s)
 std::string bytes_to_hex(const std::string &bytes)
 {
     std::string hex;
-    for (std::size_t pos = 0; pos < bytes.size(); pos++)
+    for (auto byte : bytes)
     {
-        hex.push_back(decimal_to_hex(bytes[pos] / 16));
-        hex.push_back(decimal_to_hex(bytes[pos] % 16));
+        hex.push_back(decimal_to_hex(static_cast<unsigned char>(byte) / 16));
+        hex.push_back(decimal_to_hex(static_cast<unsigned char>(byte) % 16));
     }
     return hex;
 }
