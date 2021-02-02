@@ -18,7 +18,7 @@ function(add_challenge challenge_number)
   target_link_libraries(${exec_name} PRIVATE cryptopals_common)
   set_target_properties(${exec_name}
     PROPERTIES
-      RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin
+      RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin
   )
 
   if (challenge_OUTPUT)
