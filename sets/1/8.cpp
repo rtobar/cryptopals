@@ -6,23 +6,8 @@
 #include <vector>
 
 #include "cryptopals/hex.h"
+#include "cryptopals/string_utils.h"
 
-std::vector<std::string> blocks(const std::string &s, int block_size)
-{
-    std::vector<std::string> blocks;
-    std::size_t pos;
-    for (pos = 0; pos != s.size() / block_size; pos++)
-    {
-        blocks.emplace_back(s.substr(pos * block_size, block_size));
-    }
-    pos *= block_size;
-    ;
-    if (pos < s.size())
-    {
-        blocks.emplace_back(s.substr(pos, s.size() - pos));
-    }
-    return blocks;
-}
 
 int main(int argc, char *argv[])
 {
@@ -33,7 +18,7 @@ int main(int argc, char *argv[])
     for (std::string line; std::getline(input, line);)
     {
         std::set<std::string> known_blocks;
-        for (auto &block : blocks(cryptopals::hex_to_bytes(line), 16))
+        for (auto &block : cryptopals::blocks(cryptopals::hex_to_bytes(line), 16))
         {
             if (known_blocks.count(block) == 1)
             {

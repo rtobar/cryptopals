@@ -8,6 +8,7 @@
 #include "cryptopals/frequency_analysis.h"
 #include "cryptopals/hamming.h"
 #include "cryptopals/io.h"
+#include "cryptopals/string_utils.h"
 #include "cryptopals/xor.h"
 
 namespace cryptopals
@@ -36,16 +37,6 @@ std::vector<int> key_size_guesses(const std::string &cipher_text)
                    std::next(begin(normalised_distances), 5), begin(sizes),
                    [](auto &kv) { return kv.second; });
     return sizes;
-}
-
-std::vector<std::string> transposed_blocks(const std::string &s, int block_size)
-{
-    std::vector<std::string> blocks(block_size);
-    for (std::size_t pos = 0; pos != s.size(); pos++)
-    {
-        blocks[pos % block_size].push_back(s[pos]);
-    }
-    return blocks;
 }
 
 std::string break_repeating_xor(const std::string &cipher_text)

@@ -13,6 +13,8 @@ set(cryptopals_common_sources
   cryptopals/openssl.h
   cryptopals/padding.cpp
   cryptopals/padding.h
+  cryptopals/string_utils.cpp
+  cryptopals/string_utils.h
   cryptopals/xor.cpp
   cryptopals/xor.h
 )
