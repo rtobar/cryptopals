@@ -28,9 +28,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-if [ "$output" != "$expected_output" ]; then
+if [ "`echo "$output" | xargs`" != "`echo "$expected_output" | xargs`" ]; then
     echo "Output different from expected:" 1>&2
-	 diff -Naur <(echo "$output") <(echo "$expected_output")
+	 diff -Naur <(echo -n "$output") <(echo -n "$expected_output")
     exit 1
 fi
 
