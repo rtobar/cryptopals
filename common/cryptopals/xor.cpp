@@ -18,7 +18,7 @@ std::string hex_xor(const std::string &hex_string_1,
     return bytes_to_hex(result);
 }
 
-std::string bit_xor(const std::string &bytes_1, const std::string &bytes_2)
+std::string bit_xor(std::string_view bytes_1, std::string_view bytes_2)
 {
     assert(bytes_1.size() == bytes_2.size());
     std::string result(bytes_1.size(), 0);

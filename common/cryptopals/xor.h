@@ -1,13 +1,14 @@
 #pragma once
 
 #include <string>
+#include <string_view>
 
 namespace cryptopals
 {
 std::string hex_xor(const std::string &hex_string_1,
                     const std::string &hex_string_2);
 
-std::string bit_xor(const std::string &bytes_1, const std::string &bytes_2);
+std::string bit_xor(std::string_view bytes_1, std::string_view bytes_2);
 
 std::string bit_xor(const std::string &bytes_1, const char *key, int key_size);
 
