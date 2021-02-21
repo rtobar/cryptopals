@@ -9,6 +9,10 @@ namespace cryptopals
 std::string read_multiline_b64_file(const std::string &filename)
 {
     std::ifstream input(filename);
+    if (!input.good())
+    {
+        throw std::runtime_error("failed to open " + filename);
+    }
     std::string input_str;
     for (std::string line; std::getline(input, line);)
     {
