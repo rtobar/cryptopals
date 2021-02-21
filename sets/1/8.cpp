@@ -8,7 +8,6 @@
 #include "cryptopals/hex.h"
 #include "cryptopals/string_utils.h"
 
-
 int main(int argc, char *argv[])
 {
     assert(argc > 1);
@@ -18,7 +17,8 @@ int main(int argc, char *argv[])
     for (std::string line; std::getline(input, line);)
     {
         std::set<std::string> known_blocks;
-        for (auto &block : cryptopals::blocks(cryptopals::hex_to_bytes(line), 16))
+        for (auto &block :
+             cryptopals::blocks(cryptopals::hex_to_bytes(line), 16))
         {
             if (known_blocks.count(block) == 1)
             {
