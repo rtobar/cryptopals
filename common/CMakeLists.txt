@@ -11,8 +11,12 @@ set(cryptopals_common_sources
   cryptopals/io.h
   cryptopals/hex.cpp
   cryptopals/hex.h
+  cryptopals/oracle_utils.cpp
+  cryptopals/oracle_utils.h
   cryptopals/padding.cpp
   cryptopals/padding.h
+  cryptopals/rand.cpp
+  cryptopals/rand.h
   cryptopals/string_utils.cpp
   cryptopals/string_utils.h
   cryptopals/xor.cpp
