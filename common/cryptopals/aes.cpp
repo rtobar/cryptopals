@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include <string_view>
 
-#include "cryptopals/openssl.h"
+#include "cryptopals/aes.h"
 #include "cryptopals/padding.h"
 #include "cryptopals/string_utils.h"
 #include "cryptopals/xor.h"

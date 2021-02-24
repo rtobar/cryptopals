@@ -1,4 +1,6 @@
 set(cryptopals_common_sources
+  cryptopals/aes.cpp
+  cryptopals/aes.h
   cryptopals/base64.cpp
   cryptopals/base64.h
   cryptopals/frequency_analysis.cpp
@@ -9,8 +11,6 @@ set(cryptopals_common_sources
   cryptopals/io.h
   cryptopals/hex.cpp
   cryptopals/hex.h
-  cryptopals/openssl.cpp
-  cryptopals/openssl.h
   cryptopals/padding.cpp
   cryptopals/padding.h
   cryptopals/string_utils.cpp

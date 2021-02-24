@@ -1,8 +1,8 @@
 #include <cassert>
 #include <iostream>
 
+#include "cryptopals/aes.h"
 #include "cryptopals/io.h"
-#include "cryptopals/openssl.h"
 
 int main(int argc, char *argv[])
 {
