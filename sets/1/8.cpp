@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     std::string the_block;
     for (std::string line; std::getline(input, line);)
     {
-        std::set<std::string> known_blocks;
+        std::set<std::string_view> known_blocks;
         for (auto &block :
              cryptopals::blocks(cryptopals::hex_to_bytes(line), 16))
         {

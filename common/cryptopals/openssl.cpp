@@ -2,6 +2,7 @@
 #include <memory>
 #include <openssl/evp.h>
 #include <stdexcept>
+#include <string_view>
 
 #include "cryptopals/openssl.h"
 #include "cryptopals/padding.h"
@@ -11,7 +12,7 @@
 namespace cryptopals
 {
 
-const unsigned char *uchar(const std::string &s)
+const unsigned char *uchar(std::string_view s)
 {
     return reinterpret_cast<const unsigned char *>(s.data());
 }
@@ -47,7 +48,7 @@ class Cipher {
         }
     };
 
-    int update(const std::string &in, unsigned char *out)
+    int update(std::string_view in, unsigned char *out)
     {
         int len;
         if (EVP_CipherUpdate(ctx(), out, &len, uchar(in), in.size()) != 1)
@@ -55,7 +56,7 @@ class Cipher {
         return len;
     }
 
-    int update(const std::string &in, std::string &out)
+    int update(std::string_view in, std::string &out)
     {
         return update(in, uchar(out));
     }
@@ -77,7 +78,7 @@ class Cipher {
 
 class AES128_ECB_Cipher : public Cipher {
   public:
-    AES128_ECB_Cipher(const std::string &key, bool encrypt) : Cipher()
+    AES128_ECB_Cipher(std::string_view key, bool encrypt) : Cipher()
     {
         assert(key.size() == 16);
         if (!EVP_CipherInit_ex(ctx(), EVP_aes_128_ecb(), nullptr, uchar(key),
@@ -88,7 +89,7 @@ class AES128_ECB_Cipher : public Cipher {
     }
 };
 
-std::string xcrypt_aes128_ecb(const std::string &text, const std::string &key,
+std::string xcrypt_aes128_ecb(std::string_view text, std::string_view key,
                               bool encrypt)
 {
 
@@ -102,23 +103,23 @@ std::string xcrypt_aes128_ecb(const std::string &text, const std::string &key,
     return xcrypted_text.substr(0, outlen);
 }
 
-std::string decrypt_aes128_ecb(const std::string &cipher_text,
-                               const std::string &key)
+std::string decrypt_aes128_ecb(std::string_view cipher_text,
+                               std::string_view key)
 {
     return xcrypt_aes128_ecb(cipher_text, key, false);
 }
 
-std::string encrypt_aes128_ecb(const std::string &text, const std::string &key)
+std::string encrypt_aes128_ecb(std::string_view text, std::string_view key)
 {
     return xcrypt_aes128_ecb(text, key, true);
 }
 
-std::string decrypt_aes128_cbc(const std::string &cipher_text,
-                               const std::string &key, const std::string &iv)
+std::string decrypt_aes128_cbc(std::string_view cipher_text,
+                               std::string_view key, std::string_view iv)
 {
 
     assert(iv.size() == key.size());
-    std::string previous_cipherblock = iv;
+    std::string previous_cipherblock{iv};
     std::string decrypted_text;
     int outlen = 0;
     for (const auto &cipher_block : blocks(cipher_text, 16))

@@ -2,9 +2,9 @@
 
 namespace cryptopals
 {
-std::vector<std::string> blocks(const std::string &s, int block_size)
+std::vector<std::string_view> blocks(std::string_view s, int block_size)
 {
-    std::vector<std::string> blocks;
+    std::vector<std::string_view> blocks;
     std::size_t pos;
     for (pos = 0; pos != s.size() / block_size; pos++)
     {

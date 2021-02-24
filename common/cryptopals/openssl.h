@@ -1,17 +1,18 @@
 #pragma once
 
 #include <string>
+#include <string_view>
 
 namespace cryptopals
 {
 
-std::string decrypt_aes128_ecb(const std::string &cipher_text,
-                               const std::string &key);
+std::string decrypt_aes128_ecb(std::string_view cipher_text,
+                               std::string_view key);
 
-std::string encrypt_aes128_ecb(const std::string &plain_text,
-                               const std::string &key);
+std::string encrypt_aes128_ecb(std::string_view plain_text,
+                               std::string_view key);
 
-std::string decrypt_aes128_cbc(const std::string &cipher_text,
-                               const std::string &key, const std::string &iv);
+std::string decrypt_aes128_cbc(std::string_view cipher_text,
+                               std::string_view key, std::string_view iv);
 
 } // namespace cryptopals
