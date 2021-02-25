@@ -9,8 +9,8 @@
 namespace cryptopals
 {
 
-std::string hex_xor(const std::string &hex_string_1,
-                    const std::string &hex_string_2)
+std::string hex_xor(std::string_view hex_string_1,
+                    std::string_view hex_string_2)
 {
     assert(hex_string_1.size() == hex_string_2.size());
     auto result =
@@ -27,7 +27,7 @@ std::string bit_xor(std::string_view bytes_1, std::string_view bytes_2)
     return result;
 }
 
-std::string bit_xor(const std::string &bytes, const char *key, int key_size)
+std::string bit_xor(std::string_view bytes, const char *key, int key_size)
 {
     std::string result(bytes.size(), 0);
     auto key_xor = [i = 0, key, key_size](char c) mutable
@@ -36,7 +36,7 @@ std::string bit_xor(const std::string &bytes, const char *key, int key_size)
     return result;
 }
 
-std::string bit_xor(const std::string &bytes, const char c)
+std::string bit_xor(std::string_view bytes, const char c)
 {
     std::string result(bytes.size(), 0);
     std::transform(begin(bytes), end(bytes), begin(result),

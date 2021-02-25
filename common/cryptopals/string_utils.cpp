@@ -19,7 +19,7 @@ std::vector<std::string_view> blocks(std::string_view s, int block_size)
     return blocks;
 }
 
-std::vector<std::string> transposed_blocks(const std::string &s, int block_size)
+std::vector<std::string> transposed_blocks(std::string_view s, int block_size)
 {
     std::vector<std::string> blocks(block_size);
     for (std::size_t pos = 0; pos != s.size(); pos++)

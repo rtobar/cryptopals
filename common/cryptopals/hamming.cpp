@@ -7,8 +7,7 @@
 namespace cryptopals
 {
 
-std::size_t hamming_distance(const std::string &bytes1,
-                             const std::string &bytes2)
+std::size_t hamming_distance(std::string_view bytes1, std::string_view bytes2)
 {
     auto result = bit_xor(bytes1, bytes2);
     auto popcount =

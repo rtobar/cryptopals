@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <array>
 #include <cassert>
-#include <string>
 
 #include "cryptopals/hex.h"
 
@@ -31,7 +30,7 @@ static char decimal_to_hex(char c)
     return c - 10 + 'a';
 }
 
-std::string hex_to_bytes(const std::string &s)
+std::string hex_to_bytes(std::string_view s)
 {
     assert(s.size() % 2 == 0);
     std::string bytes;
@@ -43,7 +42,7 @@ std::string hex_to_bytes(const std::string &s)
     return bytes;
 }
 
-std::string bytes_to_hex(const std::string &bytes)
+std::string bytes_to_hex(std::string_view bytes)
 {
     std::string hex;
     for (auto byte : bytes)

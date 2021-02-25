@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <array>
 #include <cassert>
-#include <string>
 
 #include "cryptopals/base64.h"
 #include "cryptopals/hex.h"
@@ -16,7 +15,7 @@ static const std::array<char, 64> base64_table{
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'};
 
-std::string bytes_to_base64(const std::string &bytes)
+std::string bytes_to_base64(std::string_view bytes)
 {
     std::string b64;
     auto push_base64_symbol = [&](char c)
@@ -56,12 +55,12 @@ std::string bytes_to_base64(const std::string &bytes)
     return b64;
 }
 
-std::string hex_to_base64(const std::string &s)
+std::string hex_to_base64(std::string_view s)
 {
     return bytes_to_base64(hex_to_bytes(s));
 }
 
-std::string base64_to_bytes(const std::string &base64_string)
+std::string base64_to_bytes(std::string_view base64_string)
 {
     auto b64_to_byte = [](const char c)
     {

@@ -1,12 +1,13 @@
 #pragma once
 
 #include <string>
+#include <string_view>
 #include <tuple>
 
 namespace cryptopals
 {
 
-int score_english_character_freq(const std::string &text);
+int score_english_character_freq(std::string_view text);
 
 struct FrequencyAnalysisResult
 {
@@ -18,7 +19,6 @@ struct FrequencyAnalysisResult
 bool operator<(const FrequencyAnalysisResult &lhs,
                const FrequencyAnalysisResult &rhs);
 
-FrequencyAnalysisResult
-best_score_with_single_char_xor(const std::string &text);
+FrequencyAnalysisResult best_score_with_single_char_xor(std::string_view text);
 
 } // namespace cryptopals
