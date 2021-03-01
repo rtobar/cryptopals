@@ -11,6 +11,8 @@ set(cryptopals_common_sources
   cryptopals/io.h
   cryptopals/hex.cpp
   cryptopals/hex.h
+  cryptopals/mt19937.cpp
+  cryptopals/mt19937.h
   cryptopals/oracle_utils.cpp
   cryptopals/oracle_utils.h
   cryptopals/padding.cpp
