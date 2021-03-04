@@ -21,6 +21,8 @@ set(cryptopals_common_sources
   cryptopals/rand.h
   cryptopals/string_utils.cpp
   cryptopals/string_utils.h
+  cryptopals/time.cpp
+  cryptopals/time.h
   cryptopals/xor.cpp
   cryptopals/xor.h
 )

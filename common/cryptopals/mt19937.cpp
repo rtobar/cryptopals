@@ -1,5 +1,7 @@
 #include <array>
+#include <cassert>
 #include <iostream>
+#include <vector>
 
 #include "cryptopals/mt19937.h"
 
@@ -29,6 +31,16 @@ void set_seed(std::uint32_t seed)
     }
 }
 
+template <typename Range> void set_state(const Range &new_state)
+{
+    assert(new_state.size() == N);
+    std::copy(new_state.begin(), new_state.end(), state.begin());
+    index = 0;
+};
+
+template void set_state<std::vector<std::uint32_t>>(
+    const std::vector<std::uint32_t> &new_state);
+
 static void twist()
 {
     constexpr std::uint32_t M = 397;
@@ -47,6 +59,44 @@ static void twist()
     index = 0;
 }
 
+constexpr std::uint32_t U = 11;
+constexpr std::uint32_t S = 7;
+constexpr std::uint32_t B = 0x9D2C5680;
+constexpr std::uint32_t T = 15;
+constexpr std::uint32_t C = 0xEFC60000;
+constexpr std::uint32_t L = 18;
+
+std::uint32_t temper(std::uint32_t x)
+{
+    x ^= x >> U;
+    x ^= (x << S) & B;
+    x ^= (x << T) & C;
+    x ^= x >> L;
+    return x;
+}
+
+std::uint32_t untemper(std::uint32_t value)
+{
+    value ^= value >> L;
+    value ^= (value << T) & C;
+
+    auto x = value;
+    for (int i = 0; i != 5; i++)
+    {
+        x <<= S;
+        x = value ^ (x & B);
+    }
+    value = x;
+
+    for (int i = 0; i != 2; i++)
+    {
+        x >>= U;
+        x ^= value;
+    };
+    value = x;
+    return value;
+}
+
 std::uint32_t rand()
 {
     if (index >= N)
@@ -57,20 +107,7 @@ std::uint32_t rand()
         }
         twist();
     }
-
-    constexpr std::uint32_t U = 11;
-    constexpr std::uint32_t S = 7;
-    constexpr std::uint32_t B = 0x9D2C5680;
-    constexpr std::uint32_t T = 15;
-    constexpr std::uint32_t C = 0xEFC60000;
-    constexpr std::uint32_t L = 18;
-
-    auto x = state[index++];
-    x ^= x >> U;
-    x ^= (x << S) & B;
-    x ^= (x << T) & C;
-    x ^= x >> L;
-    return x;
+    return temper(state[index++]);
 }
 
 std::int32_t rand_signed()
