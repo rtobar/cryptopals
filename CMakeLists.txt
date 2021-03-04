@@ -10,7 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 find_package(OpenSSL REQUIRED)
 
 function(add_challenge challenge_number)
-		  cmake_parse_arguments(challenge "" "" "ARGS;OUTPUT;OUTPUT_FILE" ${ARGV})
+  cmake_parse_arguments(challenge "" "" "ARGS;OUTPUT;OUTPUT_FILE" ${ARGV})
   get_filename_component(set_number ${CMAKE_CURRENT_SOURCE_DIR} NAME)
   set(exec_name set_${set_number}_challenge_${challenge_number})
 
@@ -23,12 +23,15 @@ function(add_challenge challenge_number)
 
   if (challenge_OUTPUT)
     set(output -output ${challenge_OUTPUT})
-  else()
+  elseif(challenge_OUTPUT_FILE)
     set(output -output-file ${challenge_OUTPUT_FILE})
+  endif()
+  if (challenge_ARGS)
+    set(args -args ${challenge_ARGS})
   endif()
   add_test(NAME test_${exec_name}
     COMMAND ${PROJECT_SOURCE_DIR}/cmake/run_and_compare
-    $<TARGET_FILE:${exec_name}> -args ${challenge_ARGS} ${output}
+    $<TARGET_FILE:${exec_name}> ${args} ${output}
   )
 endfunction()
 

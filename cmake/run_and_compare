@@ -2,19 +2,20 @@
 
 program="$1"
 shift
-# -args
-shift
 
-while [ "$1" != "-output" ] && [ "$1" != "-output-file" ]; do
-  args+=("$1")
-  shift
-done
+if [ "$1" = "-args" ]; then
+    shift
+    while [ $# -gt 0 ] && [ "$1" != "-output" ] && [ "$1" != "-output-file" ]; do
+        args+=("$1")
+        shift
+    done
+fi
 
 if [ "$1" = "-output" ]; then
     shift
     while [ $# -gt 0 ]; do
-      expected_output+=("$1")
-      shift
+        expected_output+=("$1")
+        shift
     done
 elif [ "$1" = "-output-file" ]; then
     shift
@@ -30,7 +31,7 @@ fi
 
 if [ "`echo "$output" | xargs`" != "`echo "$expected_output" | xargs`" ]; then
     echo "Output different from expected:" 1>&2
-	 diff -Naur <(echo -n "$output") <(echo -n "$expected_output")
+    diff -Naur <(echo -n "$output") <(echo -n "$expected_output")
     exit 1
 fi
 
