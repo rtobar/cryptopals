@@ -6,7 +6,11 @@
 namespace cryptopals
 {
 
-class enum AESOperationMode { ECB, CBC };
+enum class AESOperationMode
+{
+    ECB,
+    CBC
+};
 
 std::string decrypt_aes128_ecb(std::string_view cipher_text,
                                std::string_view key);
