@@ -4,3 +4,7 @@ add_challenge(5
 )
 add_challenge(6)
 add_challenge(7)
+add_challenge(8_pre0
+  ARGS "1234" "this is my example text"
+  OUTPUT "this is my example text"
+)

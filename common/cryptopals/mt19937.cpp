@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <array>
 #include <cassert>
 #include <iostream>
@@ -114,6 +115,43 @@ std::int32_t rand_signed()
 {
     auto value = rand();
     return *reinterpret_cast<std::int32_t *>(&value);
+}
+
+class Keystream {
+  public:
+    Keystream(std::uint16_t seed) { set_seed(seed); }
+
+    std::uint8_t next()
+    {
+        if (bytes_read == 4)
+        {
+            last_drawn = rand();
+            bytes_read = 0;
+        }
+        std::uint8_t key_byte = static_cast<std::uint8_t>(last_drawn & 0xff);
+        last_drawn >>= 8;
+        bytes_read++;
+        return key_byte;
+    }
+
+  private:
+    std::uint32_t last_drawn;
+    int bytes_read = 4;
+};
+
+std::string encrypt(std::string_view plain_text, std::uint16_t key)
+{
+    Keystream stream(key);
+    std::string cipher_text(plain_text.size(), 0);
+    std::transform(plain_text.begin(), plain_text.end(), cipher_text.begin(),
+                   [&](char c) { return c ^ stream.next(); });
+    return cipher_text;
+}
+
+std::string decrypt(std::string_view cipher_text, std::uint16_t key)
+{
+    // they are symmetric
+    return encrypt(cipher_text, key);
 }
 
 } // namespace mt19937
